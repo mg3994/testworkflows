@@ -27,4 +27,4 @@ jobs:
          brew install testsweets
 
       - name: Run TestSweets Tests
-        run: /usr/local/bin/testsweets run -p qA5ua2TOgxBtMGcSVBGE -a build/app/outputs/flutter-apk/app-debug.apk
+        run: /usr/local/Cellar/testsweets/1.0.0/bin/testsweets run -p qA5ua2TOgxBtMGcSVBGE -a build/app/outputs/flutter-apk/app-debug.apk

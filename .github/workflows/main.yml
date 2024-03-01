@@ -44,12 +44,23 @@ jobs:
           
          
 
-      - name: Start Android Emulator
-        uses: reactivecircus/android-emulator-runner@v2  # emulator @Pixel_2_API_29 -no-snapshot -no-accel
-        with:
-          api-level: 29
-          script: |
-            echo "Starting Android Emulator"
+      - name: Create Android emulator
+        run: |
+          echo "Creating Android emulator"
+          sdkmanager "system-images;android-29;google_apis;x86"
+          echo "no" | avdmanager --verbose create avd --force --name emulator-5554 --package "system-images;android-29;google_apis;x86" --tag "google_apis" --abi "x86"
+
+      - name: Start Android emulator
+        run: |
+          echo "Starting Android emulator"
+          emulator -avd emulator-5554 -no-snapshot -no-accel &
+
+      - name: Wait for emulator to start
+        run: |
+          echo "Waiting for emulator to start"
+          adb wait-for-device shell 'while [[ -z $(getprop sys.boot_completed) ]]; do sleep 1; done; input keyevent 82'
+
+     
            
 
       - name: Run Flutter App on Emulator

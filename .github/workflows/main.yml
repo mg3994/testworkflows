@@ -27,8 +27,8 @@ jobs:
       - name: Check Flutter version
         run: flutter --version
 
-      - name: Get Flutter packages
-        run: flutter pub get
+      # - name: Get Flutter packages
+      #   run: flutter pub get
 
       - name: Export ADB and xcrun paths
         run: |

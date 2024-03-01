@@ -25,7 +25,7 @@ jobs:
           channel: "stable"
 
       - name: Check Flutter version
-        run: flutter --version
+        run: flutter doctor -v
 
       # - name: Get Flutter packages
       #   run: flutter pub get
@@ -45,12 +45,12 @@ jobs:
          
 
       - name: Start Android Emulator
-        uses: reactivecircus/android-emulator-runner@v2
+        uses: reactivecircus/android-emulator-runner@v2  # emulator @Pixel_2_API_29 -no-snapshot -no-accel
         with:
           api-level: 29
           script: |
             echo "Starting Android Emulator"
-            emulator @Pixel_2_API_29 -no-snapshot -no-accel
+           
 
       - name: Run Flutter App on Emulator
         run: adb devices #flutter run --debug

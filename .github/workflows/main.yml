@@ -41,17 +41,17 @@ jobs:
       - name: Create Android emulator
         run: |
           echo "Creating Android emulator"
-          echo "no" | $ANDROID_SDK_ROOT/tools/bin/avdmanager --verbose create avd --force --name emulator-5554 --package "system-images;android-29;google_apis;x86" --tag "google_apis" --abi "x86"
+          echo "no" | $ANDROID_HOME/tools/bin/avdmanager --verbose create avd --force --name emulator-5554 --package "system-images;android-29;google_apis;x86" --tag "google_apis" --abi "x86"
 
       - name: Start Android emulator
         run: |
           echo "Starting Android emulator"
-          $ANDROID_SDK_ROOT/emulator/emulator -avd emulator-5554 -no-snapshot -no-accel &
+          $ANDROID_HOME/emulator/emulator -avd emulator-5554 -no-snapshot -no-accel &
 
       - name: Wait for emulator to start
         run: |
           echo "Waiting for emulator to start"
-          $ANDROID_SDK_ROOT/platform-tools/adb wait-for-device shell 'while [[ -z $(getprop sys.boot_completed) ]]; do sleep 1; done; input keyevent 82'
+          $ANDROID_HOME/platform-tools/adb wait-for-device shell 'while [[ -z $(getprop sys.boot_completed) ]]; do sleep 1; done; input keyevent 82'
 
-      - name: Run Flutter App on Emulator
-        run: flutter run --debug
+      # - name: Run Flutter App on Emulator
+      #   run: flutter run --debug

@@ -8,18 +8,17 @@ on:
 jobs:
   build_and_setup:
     runs-on: macos-latest
-    env:
-      ANDROID_SDK_ROOT: $HOME/Library/Android/sdk
+    
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Install JDK 8
+      - name: Install JDK 17
         uses: actions/setup-java@v2
         with:
           distribution: 'adopt'
-          java-version: '8'
+          java-version: '17'
 
       - name: Install Flutter
         uses: subosito/flutter-action@v2

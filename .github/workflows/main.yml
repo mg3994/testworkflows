@@ -16,15 +16,18 @@ jobs:
 
       - name: Check Architecture
         run: uname -m
+        
       - name: Setup Homebrew
         run: |
           /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
+     
 
       - name: Install TestSweets
         run: |
          brew tap filledstacks/tap
          brew install testsweets
+      - name: Check Architecture
+        run: brew arch htop
 
       - name: Run TestSweets Tests
         run: /usr/local/Cellar/testsweets/1.0.0/bin/testsweets run -p qA5ua2TOgxBtMGcSVBGE -a build/app/outputs/flutter-apk/app-debug.apk

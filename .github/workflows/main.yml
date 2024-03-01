@@ -14,9 +14,17 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Check Architecture
+        run: uname -m
+      - name: Setup Homebrew
+        run: |
+          /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+
       - name: Install TestSweets
         run: |
-          brew install testsweets
+         brew tap filledstacks/tap
+         brew install testsweets
 
       - name: Run TestSweets Tests
         run: /usr/local/bin/testsweets run -p qA5ua2TOgxBtMGcSVBGE -a build/app/outputs/flutter-apk/app-debug.apk
